@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Or Remove Your Grocery Item</title>
+    <style>
+        td span{
+            cursor: pointer;
+            color: rgb(255, 41, 41);
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <input type="text" id="addItem">
+    <input type="button" value="Add New Item" id="addNew"> 
+    <div id="output">
+
+    </div>
+</div>
+    <script>
+            let myList = ["Bananas", "Apple", "Mango", "Eggs", "Cake", "Milk"];
+            const inputText = document.getElementById('addItem');
+            const inputBtn = document.getElementById('addNew');
+            const output = document.getElementById("output")
+            inputBtn.addEventListener('click', function(){
+                if (inputText.value) {
+                    myList.push(inputText.value);
+                    build();
+                }
+
+
+            })
+
+            window.onload = build();
+            function build() {
+                output.innerHTML = "<h2> Grocery List Item"
+                console.log("ready");
+
+                const tables = document.createElement('table');
+                for (let i = 0; i < myList.length; i++) {
+                    const listItem = myList[i];
+                    const row = document.createElement('tr');
+                    row.index = i;
+                    const cell1 = document.createElement('td');
+                    cell1.innerHTML = listItem;
+                    row.appendChild(cell1);
+                    const cell2 = document.createElement('td');
+                    const span1 = document.createElement('span');
+                    span1.innerText = " Delete ";
+                    cell2.appendChild(span1);
+                    span1.addEventListener("click", function () {
+                        let dltItem = myList.splice(i,1);
+                        build();
+                        console.log(myList);
+                    })
+                    const span2 = document.createElement('span');
+                    span2.innerText = " Edit ";
+                    cell2.appendChild(span2);
+
+                    row.appendChild(cell2)
+                    tables.appendChild(row);
+                    console.log(tables);
+                    output.appendChild(tables);
+                    
+
+            }}
+          
+
+    </script>
+</body>
+</html>
