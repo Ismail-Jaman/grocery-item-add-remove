@@ -9,6 +9,10 @@
             cursor: pointer;
             color: rgb(255, 41, 41);
             margin: 5px;
+          
+        }
+        #heading{
+            color: rgb(15, 131, 0);
         }
     </style>
 </head>
@@ -21,13 +25,14 @@
     </div>
 </div>
     <script>
-            let myList = ["Bananas", "Apple", "Mango", "Eggs", "Cake", "Milk"];
+            let myList = ["Bananagit ", "Apple", "Mango", "Eggs", "Cake", "Milk"];
             const inputText = document.getElementById('addItem');
             const inputBtn = document.getElementById('addNew');
             const output = document.getElementById("output")
             inputBtn.addEventListener('click', function(){
                 if (inputText.value) {
                     myList.push(inputText.value);
+                    inputText.value = "";
                     build();
                 }
 
@@ -36,7 +41,7 @@
 
             window.onload = build();
             function build() {
-                output.innerHTML = "<h2> Grocery List Item"
+                output.innerHTML = "<h2 id = heading> Update Your Grocery List By Deleting Or Adding New Items  </h2>"
                 console.log("ready");
 
                 const tables = document.createElement('table');
@@ -51,6 +56,7 @@
                     const span1 = document.createElement('span');
                     span1.innerText = " Delete ";
                     cell2.appendChild(span1);
+                   
                     span1.addEventListener("click", function () {
                         let dltItem = myList.splice(i,1);
                         build();
@@ -58,6 +64,25 @@
                     })
                     const span2 = document.createElement('span');
                     span2.innerText = " Edit ";
+                    span2.addEventListener("click", function () {
+                        row.style.backgroundColor =" cyan";
+                        let addEle = row.firstElementChild;
+                        console.log(addEle)
+                        const newInput = document.createElement("input");
+                        newInput.value = addEle.innerText;
+                        newInput.focus();
+                        console.log(newInput);
+                        addEle.innerHTML = "";
+                        addEle.appendChild(newInput);
+                        newInput.addEventListener("blur",function () {
+                            addEle.innerHTML = newInput.value;
+                            row.style.backgroundColor = "White";
+                            listItem = newInput.value;
+                        })
+
+
+                        
+                    })
                     cell2.appendChild(span2);
 
                     row.appendChild(cell2)
