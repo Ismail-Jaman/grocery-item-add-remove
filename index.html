@@ -8,32 +8,54 @@
         td span{
             cursor: pointer;
             color: rgb(255, 41, 41);
-            margin: 5px;
-          
+
         }
         #heading{
             color: rgb(18, 128, 4);
+        }
+        td:first-child{
+            width: 250px;
+            overflow: hidden;
+        }
+        #saveBtn{
+            cursor: progress;
+             border: 3px solid rgb(138, 231, 135);
+               padding: 5px; margin-top:20px; 
+               background-color: rgb(34, 173, 34);
+               border-radius: 10px;
         }
     </style>
 </head>
 <body>
 <div class="container">
+   
+    <div id="output"> </div>
     <input type="text" id="addItem">
-    <input type="button" value="Add New Item" id="addNew"> 
-    <div id="output">
-
-    </div>
+    <input style="cursor: pointer; border: 3px solid rgb(241, 177, 104); border-radius: 10px; padding: 5px; margin-top:20px; background-color: rgb(255, 136, 0);" type="button" value="Add New Item" id="addNew"> 
+    <br>
+    <button id="saveBtn"> Click Here To Save </button>
 </div>
     <script>
-            let myList = ["Bananagit ", "Apple", "Mango", "Eggs", "Cake", "Milk"];
+            let myList = ["Banana ", "Apple", "Mango", "Eggs", "Cake", "Milk"];
             const inputText = document.getElementById('addItem');
             const inputBtn = document.getElementById('addNew');
-            const output = document.getElementById("output")
+            const output = document.getElementById("output");
+            const saveBtn = document.getElementById("saveBtn");
+            saveBtn.addEventListener("click", function () {
+                window.alert("Item List Saved Succesfully")
+            })
             inputBtn.addEventListener('click', function(){
                 if (inputText.value) {
                     myList.push(inputText.value);
                     inputText.value = "";
                     build();
+                }
+                else{
+                   function empty() {
+                   window.alert("I Really Love You,But I Can Not Add a Blank Item To Your List ")
+                   }
+                   empty();
+                   build();
                 }
 
 
